@@ -75,9 +75,11 @@ class CloudConnect:
         r = requests.delete(**self.url_kwargs(url, data=data))
         return self.parse_json(r)
 
-    def patch(self, url, data=None):
+    def patch(self, url, data=None, debug=False):
         """ Patch request that returns JSON. Takes data as dict """
         r = requests.patch(**self.url_kwargs(url, data=data))
+        if debug:
+            print data, '\n'
         return self.parse_json(r)
 
     def get_zone_id(self, domain):
@@ -103,9 +105,22 @@ class CloudConnect:
         """ Get zone details. """
         return self.get('zones/{}'.format(zone_id))
 
+    def zone_settings(self, zone_id):
+        """ Get zone settings """
+        return self.get('zones/{}/settings'.format(zone_id))
+
     def edit_zone_properties(self, zone_id, **kwargs):
         """ Edit zone properties. Only one can be changed at a time. """
-        return self.patch('zones/{}'.format(zone_id), kwargs)
+        return self.patch('zones/{}/settings'.format(zone_id), kwargs)
+
+    def get_zone_settings(self, zone_id, setting):
+        """ Get specific setting for zone """
+        return self.get('zones/{}/settings/{}'.format(zone_id, setting))
+
+    def edit_zone_settings(self, zone_id, setting, **kwargs):
+        """ Edit specific settings for zone """
+        url = 'zones/{}/settings/{}'.format(zone_id, setting)
+        return self.patch(url, kwargs)
 
     def delete_zone(self, zone_id):
         """ Delete an existing zone. Plans & subscriptions must be cancelled"""
@@ -155,3 +170,8 @@ class CloudConnect:
     def delete_dns_record(self, zone_id, rec_id):
         """ Delete a DNS record, using zone (domain) id and record id """
         return self.delete('zones/{}/dns_records/{}'.format(zone_id, rec_id))
+
+    def custom_cert(self, zone_id):
+        """ Details about custom certificates """
+        url = 'zones/{}/custom_certificates'.format(zone_id)
+        return self.get(url)
