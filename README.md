@@ -21,14 +21,14 @@ This project is currently under development. Pull requests and suggested code im
 ## Install
 
 ```bash
-$ git clone https://github.com/timworx/cloudconnect.git
+$ git clone https://github.com/0snug0/cloudconnect.git
 $ python setup.py install
 ```
 
 Or via pip with:
 
 ```bash
-$ pip install git+git://github.com/timworx/cloudconnect.git
+$ pip install git+git://github.com/0snug0/cloudconnect.git
 ```
 
 ## Usage
