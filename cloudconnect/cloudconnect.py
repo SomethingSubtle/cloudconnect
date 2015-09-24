@@ -7,12 +7,11 @@ class CloudConnect:
     def __init__(self, email, apikey):
         self.email = email
         self.apikey = apikey
-        self. auth = self.email, self.apikey
+        self.auth = self.email, self.apikey
         self.api = 'https://api.cloudflare.com/client/v4/'
 
     class APIError(Exception):
-        """ Exception Subclass for handling Api Errors
-        """
+        """ Exception Subclass for handling Api Errors """
         def __init__(self, value):
             self.value = value
         def __str__(self):
@@ -175,3 +174,13 @@ class CloudConnect:
         """ Details about custom certificates """
         url = 'zones/{}/custom_certificates'.format(zone_id)
         return self.get(url)
+
+    def analytics_dashboard(self, zone_id, **kwargs):
+        """ Get analytics data for zone """
+        url = 'zones/{}/analytics/dashboard'.format(zone_id)
+        return self.get(url, kwargs)
+
+    def analytics_by_colo(self, zone_id, **kwargs):
+        """ ENT ONLY feature get analytics by colo """
+        url = 'zones/{}/analytics/colos'.format(zone_id)
+        return self.get(url, kwargs)
