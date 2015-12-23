@@ -185,32 +185,32 @@ class CloudConnect:
         url = 'zones/{}/analytics/colos'.format(zone_id)
         return self.get(url, kwargs)
         
-   def list_waf_packages(self, zone_id, package_id, **kwargs):
+    def list_waf_packages(self, zone_id, package_id, **kwargs):
         """ Patch WAF Rule Package """
         url = 'zones/{}/firewall/waf/packages/'.format(zone_id)
         return self.get(url, kwargs)	
-		
+	
     def update_waf_rule_package(self, zone_id, package_id, **kwargs):
         """ Patch WAF Rule Package | sensitivity, action_mode"""
         url = 'zones/{}/firewall/waf/packages/{}'.format(zone_id, package_id)
         return self.patch(url, kwargs)
-		
-	def list_waf_rule_groups(self, zone_id, package_id, **kwargs):
-		""" List WAF Rule Groups """
-		url = 'zones/{}/firewall/waf/packages/{}/groups'.format(zone_id, package_id)
-		return self.get(url, kwargs)		
 	
-	def update_waf_rule_group(self, zone_id, package_id, group_id, **kwargs):
-		""" Patch WAF Rule Group | mode = [on | off]"""
-		url = 'zones/{}/firewall/waf/packages/{}/groups/{}'.format(zone_id, package_id,group_id)
-		return self.patch(url, kwargs)
+    def list_waf_rule_groups(self, zone_id, package_id, **kwargs):
+	""" List WAF Rule Groups """
+	url = 'zones/{}/firewall/waf/packages/{}/groups'.format(zone_id, package_id)
+	return self.get(url, kwargs)		
+	
+    def update_waf_rule_group(self, zone_id, package_id, group_id, **kwargs):
+	""" Patch WAF Rule Group | mode = [on | off]"""
+	url = 'zones/{}/firewall/waf/packages/{}/groups/{}'.format(zone_id, package_id,group_id)
+	return self.patch(url, kwargs)
 
-	def list_waf_rules(self, zone_id, package_id, **kwargs):
-		""" List WAF Rule Groups """
-		url = 'zones/{}/firewall/waf/packages/{}/rules'.format(zone_id, package_id)
-		return self.get(url, kwargs)		
+    def list_waf_rules(self, zone_id, package_id, **kwargs):
+	""" List WAF Rule Groups """
+	url = 'zones/{}/firewall/waf/packages/{}/rules'.format(zone_id, package_id)
+	return self.get(url, kwargs)		
 	
-	def update_waf_rule(self, zone_id, package_id, rule_id, **kwargs):
-		""" Patch WAF Rule | mode = [default | disable | simulate |block | challenge| on | off]"""
-		url = 'zones/{}/firewall/waf/packages/{}/rules/{}'.format(zone_id, package_id,rule_id)
-		return self.patch(url, kwargs)
+    def update_waf_rule(self, zone_id, package_id, rule_id, **kwargs):
+	""" Patch WAF Rule | mode = [default | disable | simulate |block | challenge| on | off]"""
+	url = 'zones/{}/firewall/waf/packages/{}/rules/{}'.format(zone_id, package_id,rule_id)
+	return self.patch(url, kwargs)
